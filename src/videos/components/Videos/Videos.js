@@ -40,14 +40,14 @@ class Videos extends Component {
 
     return (
       <Fragment>
-        <h3>
-          Your Tubes
-          <span>
-            <Link to='/video-create'>
-              <button>Add Tube</button>
-            </Link>
-          </span>
-        </h3>
+        <div className="videos-header">
+          <h2 className="videos-header-text">
+            Your Tubes
+          </h2>
+          <Link to='/video-create'>
+            <button className="add-tube-btn">+</button>
+          </Link>
+        </div>
         {videos.length === 0
           ? <Alert variant="primary">{'You haven\'t added any videos yet!'}</Alert>
           : ''

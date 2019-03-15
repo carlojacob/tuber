@@ -1,12 +1,32 @@
-.artist-col,
-.title-col,
-.album-col,
-.description-col,
-.thumbnail-col {
-  // display: flex inline-block;
-  // padding: 5px 15px;
-  // text-align: center;
-  // width: 18vw;
+$add-btn-color-bright: #f00;
+$add-btn-color-dark: #b00;
+$add-btn-text-color: #fffafa;
+$add-btn-text-hover-color: #eee9e9;
+
+.videos-header-text {
+  font-weight: bold;
+}
+
+.videos-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-tube-btn {
+  background-image: linear-gradient($add-btn-color-dark, $add-btn-color-bright, $add-btn-color-dark);
+  border-radius: 15px;
+  color: $add-btn-text-color;
+  font-size: 3rem;
+  height: 40px;
+  margin: 10px;
+  padding: 0 0 70px;
+  text-align: center;
+  width: 72px;
+
+  &:hover {
+    color: $add-btn-text-hover-color;
+  }
 }
 
 .artist-head,
