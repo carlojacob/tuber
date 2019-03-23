@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
 
 import { getVideo, updateVideo } from '../../api'
 import messages from '../../messages'
@@ -14,8 +13,7 @@ class VideoEdit extends Component {
     this.state = {
       video: null,
       shouldRedirect: false,
-      redirectPath: '',
-      editedVideo: false
+      redirectPath: ''
     }
   }
 
@@ -41,7 +39,6 @@ class VideoEdit extends Component {
 
     updateVideo(this.props, this.state.video)
       .then(response => this.setState({
-        editedVideo: true,
         shouldRedirect: true,
         redirectPath: `/videos/${this.props.match.params.id}`
       }))
@@ -71,7 +68,7 @@ class VideoEdit extends Component {
 
   render () {
     const { handleChange, handleSubmit } = this
-    const { video, shouldRedirect, redirectPath, editedVideo } = this.state
+    const { video, shouldRedirect, redirectPath } = this.state
 
     if (shouldRedirect) {
       return <Redirect to={{
@@ -83,21 +80,13 @@ class VideoEdit extends Component {
       return <p>Loading...</p>
     }
 
-    if (editedVideo) {
-      return <Redirect to={`/rvideos/${video.id}`} />
-    }
-
     return (
-      <Fragment>
-        <VideoForm
-          video={video}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-        <Link to={`/videos/${this.props.match.params.id}`}>
-          <button>Back</button>
-        </Link>
-      </Fragment>
+      <VideoForm
+        video={video}
+        videoId={this.props.match.params.id}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     )
   }
 }

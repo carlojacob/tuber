@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
 
 import { createVideo } from '../../api'
 import messages from '../../messages'
@@ -56,16 +55,11 @@ class VideoCreate extends Component {
     const { handleChange, handleSubmit } = this
 
     return (
-      <Fragment>
-        <VideoForm
-          video={{ artist, title, album, description, url }}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-        <Link to='/videos'>
-          <button>Back</button>
-        </Link>
-      </Fragment>
+      <VideoForm
+        video={{ artist, title, album, description, url }}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     )
   }
 }
