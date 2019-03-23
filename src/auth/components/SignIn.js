@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 import { signIn } from '../api'
 import messages from '../messages'
+
+import '../../css/index.scss'
 
 class SignIn extends Component {
   constructor () {
@@ -47,28 +50,55 @@ class SignIn extends Component {
   render () {
     const { username, password } = this.state
 
+    const signInFormJsx = (
+      <Form
+        className="auth-form"
+        onSubmit={this.onSignIn}>
+        <h3 className="tuber-form-heading">Sign In</h3>
+        <Form.Group controlId="username">
+          <Form.Label className="tuber-form-label">Email address or Username</Form.Label>
+          <Form.Control
+            required
+            name="username"
+            value={username}
+            placeholder="Enter email or username"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="password">
+          <Form.Label className="tuber-form-label">Password</Form.Label>
+          <Form.Control
+            required
+            name="password"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="btn-flex-end">
+          <Link to='/'>
+            <Button
+              variant="primary-outline"
+              type="submit"
+              className="btn-mr">
+              Cancel
+            </Button>
+          </Link>
+          <Button
+            variant="primary"
+            type="submit"
+            className="btn-ml">
+            Sign In
+          </Button>
+        </Form.Group>
+      </Form>
+    )
+
     return (
-      <form className='auth-form' onSubmit={this.onSignIn}>
-        <h3>Sign In</h3>
-        <label htmlFor="username">Email or Username</label>
-        <input
-          required
-          name="username"
-          value={username}
-          placeholder="Email or Username"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          name="password"
-          value={password}
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Sign In</button>
-      </form>
+      signInFormJsx
     )
   }
 }

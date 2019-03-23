@@ -107,17 +107,15 @@ class SignUp extends Component {
             <Button
               variant="primary-outline"
               type="submit"
-              className="btn-mr"
-            >
+              className="btn-mr">
               Cancel
             </Button>
           </Link>
           <Button
             variant="primary"
             type="submit"
-            className="btn-ml"
-          >
-            Submit
+            className="btn-ml">
+            Sign Up
           </Button>
         </Form.Group>
       </Form>
