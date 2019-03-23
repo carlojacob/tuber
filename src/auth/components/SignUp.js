@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 import { signUp, signIn } from '../api'
 import messages from '../messages'
+
+import '../../css/index.scss'
 
 class SignUp extends Component {
   constructor () {
@@ -44,47 +47,84 @@ class SignUp extends Component {
   render () {
     const { email, username, password, passwordConfirmation } = this.state
 
-    return (
-      <form className='auth-form' onSubmit={this.onSignUp}>
-        <h3>Sign Up</h3>
+    const signUpFormJsx = (
+      <Form
+        className="auth-form"
+        onSubmit={this.onSignUp}>
+        <h3 className="tuber-form-heading">Sign Up</h3>
+        <Form.Group controlId="email">
+          <Form.Label className="tuber-form-label">Email address</Form.Label>
+          <Form.Control
+            required
+            name="email"
+            value={email}
+            type="email"
+            placeholder="Enter email"
+            onChange={this.handleChange}
+          />
+          <Form.Text className="text-muted">
+            {'We\'ll never share your email with anyone else.'}
+          </Form.Text>
+        </Form.Group>
 
-        <label htmlFor="email">Email</label>
-        <input
-          required
-          name="email"
-          value={email}
-          type="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="username">Username</label>
-        <input
-          required
-          name="username"
-          value={username}
-          placeholder="Username (may not contain '@' symbol)"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          name="password"
-          value={password}
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
-        <input
-          required
-          name="passwordConfirmation"
-          value={passwordConfirmation}
-          type="password"
-          placeholder="Confirm Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+        <Form.Group controlId="username">
+          <Form.Label className="tuber-form-label">Username</Form.Label>
+          <Form.Control
+            required
+            name="username"
+            value={username}
+            placeholder="Username (may not contain '@' symbol)"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="password">
+          <Form.Label className="tuber-form-label">Password</Form.Label>
+          <Form.Control
+            required
+            name="password"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="passwordConfirmation">
+          <Form.Label className="tuber-form-label">Confirm Password</Form.Label>
+          <Form.Control
+            required
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+            type="password"
+            placeholder="Confirm Password"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="btn-flex-end">
+          <Link to='/'>
+            <Button
+              variant="primary-outline"
+              type="submit"
+              className="btn-mr"
+            >
+              Cancel
+            </Button>
+          </Link>
+          <Button
+            variant="primary"
+            type="submit"
+            className="btn-ml"
+          >
+            Submit
+          </Button>
+        </Form.Group>
+      </Form>
+    )
+
+    return (
+      signUpFormJsx
     )
   }
 }
