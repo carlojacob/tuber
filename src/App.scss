@@ -72,7 +72,11 @@ body {
         &:focus {
           box-shadow: 0 0 0 .2rem $youtube-red-focus;
         }
-        }
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 .2rem $youtube-red-focus;
+      }
     }
   }
 }
