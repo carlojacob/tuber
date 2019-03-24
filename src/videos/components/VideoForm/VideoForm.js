@@ -66,7 +66,6 @@ const VideoForm = ({ handleSubmit, handleChange, video, videoId }) => (
       <Link to={videoId ? `/videos/${videoId}` : '/videos'}>
         <Button
           variant="primary-outline"
-          type="submit"
           className="btn-mr">
           Cancel
         </Button>

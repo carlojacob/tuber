@@ -106,7 +106,6 @@ class SignUp extends Component {
           <Link to='/'>
             <Button
               variant="primary-outline"
-              type="submit"
               className="btn-mr">
               Cancel
             </Button>
