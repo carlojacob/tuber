@@ -5,8 +5,6 @@ import { Form, Button } from 'react-bootstrap'
 import { signUp, signIn } from '../api'
 import messages from '../messages'
 
-import '../../css/index.scss'
-
 class SignUp extends Component {
   constructor () {
     super()
