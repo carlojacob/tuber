@@ -1,5 +1,27 @@
-$card-border-color: #333;
-$charcoal: #bbb;
+@import '../css/colors';
+
+.my-auth {
+  min-width: 12rem;
+}
+
+.my-unauth {
+  min-width: 7rem;
+}
+
+.my-dropdown-menu {
+  padding: 5px 0;
+}
+
+.auth-link {
+  color: $youtube-red;
+  display: flex;
+  padding: 10px 0;
+
+  &:hover {
+    color: $youtube-red-hover;
+    text-decoration: none;
+  }
+}
 
 .header-logo {
   height: 80px;

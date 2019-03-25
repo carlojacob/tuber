@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Dropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import './Header.scss'
@@ -6,18 +7,30 @@ import './Header.scss'
 const tuberSmallLogo = require('./tuberSmallLogo.png')
 
 const authenticatedOptions = (
-  <React.Fragment>
+  <Fragment>
     <Link to="/videos">Your Tubes</Link>
-    <Link to="/change-password">Change Password</Link>
-    <Link to="/sign-out">Sign Out</Link>
-  </React.Fragment>
+    <Dropdown alignRight>
+      <Dropdown.Toggle variant="primary-outline" id="account-dropdown">
+        Account
+      </Dropdown.Toggle>
+      <Dropdown.Menu className="my-dropdown-menu my-auth">
+        <Link className="auth-link" to="/change-password">Change Password</Link>
+        <Link className="auth-link" to="/sign-out">Sign Out</Link>
+      </Dropdown.Menu>
+    </Dropdown>
+  </Fragment>
 )
 
 const unauthenticatedOptions = (
-  <React.Fragment>
-    <Link to="/sign-up">Sign Up</Link>
-    <Link to="/sign-in">Sign In</Link>
-  </React.Fragment>
+  <Dropdown alignRight>
+    <Dropdown.Toggle variant="primary-outline" id="account-dropdown">
+      Account
+    </Dropdown.Toggle>
+    <Dropdown.Menu className="my-dropdown-menu my-unauth">
+      <Link className="auth-link" to="/sign-up">Sign Up</Link>
+      <Link className="auth-link" to="/sign-in">Sign In</Link>
+    </Dropdown.Menu>
+  </Dropdown>
 )
 
 const Header = ({ user }) => (
