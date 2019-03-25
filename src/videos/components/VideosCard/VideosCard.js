@@ -13,18 +13,18 @@ const VideosCard = ({ video }) => (
   <Col className="video-col">
     <Link to={`/videos/${video._id}`} className="video-link">
       <Card className="video-wrapper">
-        <Card.Img className="video-img" variant="top" src={!video.url
-          ? 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg'
-          : convertUrlToThumb(video.url)
+        <Card.Img className="video-img" variant="top" src={video.url
+          ? convertUrlToThumb(video.url)
+          : 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg'
         }
         />
         <Card.Body className="video-details video-title-dims">
-          <Card.Title className="video-title">{!video.url
-            ? <Fragment>
+          <Card.Title className="video-title">{video.url
+            ? stringLimit(video.title, 80)
+            : <Fragment>
               {stringLimit(video.title, 55)}
               <span><br /><i>{'Haha!'}</i></span>
-            </Fragment>
-            : stringLimit(video.title, 80)}
+            </Fragment>}
           </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush video-card-body">
