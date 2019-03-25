@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+import Settings from '../settings/Settings'
+
 import './Header.scss'
 
 const tuberSmallLogo = require('./tuberSmallLogo.png')
@@ -9,7 +11,15 @@ const tuberSmallLogo = require('./tuberSmallLogo.png')
 const authenticatedOptions = (
   <Fragment>
     <Link to="/videos">Your Tubes</Link>
-    <Dropdown alignRight>
+    <Dropdown alignRight className="btn-mr">
+      <Dropdown.Toggle variant="primary-outline" id="account-dropdown">
+        Settings
+      </Dropdown.Toggle>
+      <Dropdown.Menu className="my-dropdown-menu my-auth">
+        <Settings />
+      </Dropdown.Menu>
+    </Dropdown>
+    <Dropdown alignRight className="btn-ml">
       <Dropdown.Toggle variant="primary-outline" id="account-dropdown">
         Account
       </Dropdown.Toggle>

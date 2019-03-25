@@ -23,6 +23,18 @@
   }
 }
 
+.settings-switch {
+  color: $youtube-red;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 15px 10px 0;
+
+  &:hover {
+    color: $youtube-red-hover;
+    cursor: pointer;
+  }
+}
+
 .header-logo {
   height: 80px;
   transition: transform .2s;
