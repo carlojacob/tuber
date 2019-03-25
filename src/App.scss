@@ -1,13 +1,4 @@
-$body-background: #eee9e9;
-$success: #c7f282;
-$warning: #f1e681;
-$white: #fff;
-$error: #f08181;
-$charcoal: #ccc;
-$youtube-red: #f00;
-$youtube-red-dark: #b00;
-$youtube-red-hover: $youtube-red-dark;
-$youtube-red-focus: rgba(187, 0, 0, .5);
+@import './css/colors';
 
 a {
   color: $youtube-red;

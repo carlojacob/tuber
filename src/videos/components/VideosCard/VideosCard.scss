@@ -1,8 +1,5 @@
-$card-background-color: #fffafa;
-$card-border-color: #333;
-$img-border-color: $card-border-color;
-$card-width: 90%;
-$card-height: $card-width * (5 / 9);
+@import '../../../css/colors';
+@import '../../../css/themes';
 
 .video-artist-dims {
   height: 34px;
