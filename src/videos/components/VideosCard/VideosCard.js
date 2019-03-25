@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, ListGroup, ListGroupItem, Col } from 'react-bootstrap'
 
+import stringLimit from '../../stringLimit'
 import './VideosCard.scss'
 
 const convertUrlToThumb = url => {
@@ -18,14 +19,26 @@ const VideosCard = ({ video }) => (
         }
         />
         <Card.Body className="video-details video-title-dims">
-          <Card.Title className="video-title">{video.title} {!video.url ? <span><br /><i>{'Haha!'}</i></span> : ''}</Card.Title>
+          <Card.Title className="video-title">{!video.url
+            ? <Fragment>
+              {stringLimit(video.title, 55)}
+              <span><br /><i>{'Haha!'}</i></span>
+            </Fragment>
+            : stringLimit(video.title, 80)}
+          </Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush video-card-body">
-          <ListGroupItem className="video-details video-artist-dims">Artist: {video.artist}</ListGroupItem>
-          <ListGroupItem className="video-details video-album-dims">Album: {video.album}</ListGroupItem>
+          <ListGroupItem className="video-details video-artist-dims">
+            <b>Artist:</b> {stringLimit(video.artist, 75)}
+          </ListGroupItem>
+          <ListGroupItem className="video-details video-album-dims">
+            <b>Album:</b> {stringLimit(video.album, 73)}
+          </ListGroupItem>
         </ListGroup>
         <Card.Body className="video-details video-description-dims">
-          <Card.Text>Description: {video.description}</Card.Text>
+          <Card.Text>
+            <b>Description:</b> {stringLimit(video.description, 160)}
+          </Card.Text>
         </Card.Body>
       </Card>
     </Link>
