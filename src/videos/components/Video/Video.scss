@@ -1,13 +1,35 @@
+@import '../../../css/colors';
+
+.aspect-ratio {
+  padding-top: 50%;
+  position: relative;
+  width: 100%;
+}
+
 .centered-video {
+  bottom: 0;
+  left: 0;
+  position:  absolute;
+  right: 0;
   text-align: center;
+  top: 0;
+}
+
+.centered-video-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .full-video-dims {
-  border: 10px solid black;
+  border: 10px solid $black;
   border-radius: 2vw;
-  height: 36vw;
   margin: 10px auto;
-  width: 48vw;
+}
+
+.video-btn-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 .video-show {
@@ -15,9 +37,58 @@
 }
 
 .video-head {
+  color: $youtube-red;
   width: 100px;
 }
 
-.video-text {
+.video-show-margin {
+  margin: 20px auto;
+}
 
+.video-show-table-margin {
+  margin: 10px 0;
+}
+
+.video-text {
+  color: $youtube-red;
+  font-size: .9rem;
+  margin-bottom: 0;
+}
+
+.video-url-text {
+  color: $youtube-red;
+  font-size: .9rem;
+
+  &:hover {
+    color: $youtube-red-hover;
+    text-decoration: underline;
+  }
+}
+
+@media (min-width: 992px) {
+  .full-video-dims {
+    height: 36vw;
+    width: 48vw;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 992px) {
+  .full-video-dims {
+    height: 30vw;
+    width: 40vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .full-video-dims {
+    height: 36vw;
+    width: 48vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .full-video-dims {
+    height: 60vmin;
+    width: 80vmin;
+  }
 }

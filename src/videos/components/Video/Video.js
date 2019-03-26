@@ -1,10 +1,12 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
+import { Container, Row, Col, Table, Button } from 'react-bootstrap'
 
 import { getVideo, deleteVideo } from '../../api'
 import convertUrl from '../../convertUrl'
 import messages from '../../messages'
+import stringLimit from '../../stringLimit'
 
 import './Video.scss'
 
@@ -72,50 +74,77 @@ class Video extends Component {
     const { artist, title, album, description, url } = video
 
     return (
-      <Fragment>
-        <div className="centered-video">
-          {!url
-            ? <iframe className="full-video-dims" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
-            </iframe>
-            : <iframe className="full-video-dims" src={url}>
-            </iframe>
-          }
-          <div>
-            <button onClick={() => this.delVideo(this.props)}>Delete</button>
-            <Link to={`/videos/${this.props.match.params.id}/edit`}>
-              <button>Edit</button>
-            </Link>
-            <Link to='/videos'>
-              <button>Back</button>
-            </Link>
-          </div>
-        </div>
-        <div>
-          <p className="video-show video-head">Artist:</p>
-          <p className="video-show video-text">{artist}</p>
-        </div>
-        <div>
-          <p className="video-show video-head">Title:</p>
-          <p className="video-show video-text">{title}</p>
-        </div>
-        <div>
-          <p className="video-show video-head">Album:</p>
-          <p className="video-show video-text">{album}</p>
-        </div>
-        <div>
-          <p className="video-show video-head">Description:</p>
-          <p className="video-show video-text">{description}</p>
-        </div>
-        <div>
-          <p className="video-show video-head">URL:</p>
-          <p className="video-show video-text">
-            {!url
-              ? 'Invalid URL stored'
-              : <a rel="noopener noreferrer" target="_blank" href={url.replace('embed/', 'watch?v=')}>{url.replace('embed/', 'watch?v=')}</a>
-            }
-          </p>
-        </div>
-      </Fragment>
+      <Container>
+        <Row className="video-show-margin">
+          <Col sm={12} md={8} className="aspect-ratio">
+            <div className="centered-video">
+              {!url
+                ? <iframe className="full-video-dims" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+                </iframe>
+                : <iframe className="full-video-dims" src={url}>
+                </iframe>
+              }
+            </div>
+          </Col>
+          <Col sm={12} md={4} className="centered-video-table">
+            <Table bordered size="sm" className="video-show-table-margin">
+              <tbody>
+                <tr>
+                  <th><p className="video-show video-head">Title:</p></th>
+                  <td><p className="video-show video-text">{stringLimit(title, 60)}</p></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th><p className="video-show video-head">Artist:</p></th>
+                  <td><p className="video-show video-text">{stringLimit(artist, 60)}</p></td>
+                </tr>
+                <tr>
+                  <th><p className="video-show video-head">Album:</p></th>
+                  <td><p className="video-show video-text">{stringLimit(album, 60)}</p></td>
+                </tr>
+                <tr>
+                  <th><p className="video-show video-head">Description:</p></th>
+                  <td><p className="video-show video-text">{stringLimit(description, 150)}</p></td>
+                </tr>
+                <tr>
+                  <th><p className="video-show video-head">URL:</p></th>
+                  <td><p className="video-show video-text">
+                    {url
+                      ? <a
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="video-url-text"
+                        href={url.replace('embed/', 'watch?v=')}>
+                        {url.replace('embed/', 'watch?v=')}
+                      </a>
+                      : 'Invalid URL stored'
+                    }
+                  </p></td>
+                </tr>
+              </tbody>
+            </Table>
+            <div className="video-btn-flex">
+              <Button
+                variant="primary-outline"
+                className="btn-mr"
+                onClick={() => this.delVideo(this.props)}>
+                Delete
+              </Button>
+              <div className="btn-flex-end">
+                <Link to='/videos'>
+                  <Button variant="primary-outline" className="btn-mr">
+                    Back
+                  </Button>
+                </Link>
+                <Link to={`/videos/${this.props.match.params.id}/edit`}>
+                  <Button variant="primary" className="btn-ml">Edit</Button>
+                </Link>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
