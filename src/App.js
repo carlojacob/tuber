@@ -52,7 +52,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Header user={user} />
+        <Header user={user} alert={this.alert} />
         {alerts.map((alert, index) => (
           <Alert className={alert.fade ? 'fade-out' : ''}key={index} dismissible variant={alert.type}>
             <Alert.Heading>

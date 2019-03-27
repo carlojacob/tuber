@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Switch from 'react-switch'
 
 import { getSettings } from './api'
+import messages from './messages'
 
 import '../header/Header.scss'
 
@@ -34,12 +35,14 @@ class Settings extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
-    getSettings(this.props)
-      .then(response => this.setState({ settings: response.data.setting }))
-      .then(console.log)
+    const { alert } = this.props
 
-      .catch(console.error)
+    getSettings(this.props.user)
+      .then(response => this.setState({ settings: response.data.settings[0] }))
+      .catch(error => {
+        alert(messages.getSettingsFailure, 'danger')
+        console.error(error)
+      })
   }
 
   render () {
