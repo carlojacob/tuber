@@ -31,10 +31,10 @@ const createEmbedUrl = (videoId, settings) => {
   let auto = 0
   let loop = 0
   if (settings) {
-    if (settings.autoplay) {
+    if (settings.autoplay.checked) {
       auto = 1
     }
-    if (settings.loop) {
+    if (settings.loop.checked) {
       loop = 1
     }
   }

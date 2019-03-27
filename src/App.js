@@ -17,7 +17,7 @@ import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
 import { Alert } from 'react-bootstrap'
 
-import { getSettings, updateSettings } from './settings/api'
+import { getSettings, updateSettings, createSettings } from './settings/api'
 import messages from './settings/messages'
 
 class App extends Component {
@@ -52,6 +52,12 @@ class App extends Component {
     setTimeout(() => {
       this.setState(prevState => ({ alerts: prevState.alerts.slice(1) }))
     }, 2000)
+  }
+
+  // Function to create default user settings on sign up
+  onCreateSettings = () => {
+    createSettings(this.state.user)
+      .then(response => this.setState({ settings: response.data.setting }))
   }
 
   // Function for loading user settings.
@@ -111,7 +117,10 @@ class App extends Component {
           )} />
 
           <Route path='/sign-up' render={() => (
-            <SignUp alert={this.alert} setUser={this.setUser} />
+            <SignUp
+              alert={this.alert}
+              setUser={this.setUser}
+              onCreateSettings={this.onCreateSettings} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />

@@ -24,7 +24,7 @@ class SignUp extends Component {
   onSignUp = event => {
     event.preventDefault()
 
-    const { alert, history, setUser } = this.props
+    const { alert, history, setUser, onCreateSettings } = this.props
 
     if (this.state.username.includes('@')) {
       return alert(messages.usernameInvalid, 'danger')
@@ -34,6 +34,7 @@ class SignUp extends Component {
       .then(() => signIn(this.state))
       .then(res => setUser(res.data.user))
       .then(() => alert(messages.signUpSuccess, 'success'))
+      .then(onCreateSettings)
       .then(() => history.push('/videos'))
       .catch(error => {
         console.error(error)
