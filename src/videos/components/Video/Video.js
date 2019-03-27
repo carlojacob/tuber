@@ -41,13 +41,13 @@ class Video extends Component {
   }
 
   componentDidMount () {
-    const { alert } = this.props
+    const { alert, settings } = this.props
 
     getVideo(this.props)
       .then(response => this.setState({ video: response.data.video }))
       .then(() => this.setState({ video: {
         ...this.state.video,
-        url: convertUrl(this.state.video.url)
+        url: convertUrl(this.state.video.url, settings)
       }
       }))
       .then(() => {
@@ -72,6 +72,11 @@ class Video extends Component {
     }
 
     const { artist, title, album, description, url } = video
+
+    let urlRemoveSettings = ''
+    if (url) {
+      urlRemoveSettings = url.split('?autoplay')[0]
+    }
 
     return (
       <Container>
@@ -115,8 +120,8 @@ class Video extends Component {
                         rel="noopener noreferrer"
                         target="_blank"
                         className="video-url-text"
-                        href={url.replace('embed/', 'watch?v=')}>
-                        {url.replace('embed/', 'watch?v=')}
+                        href={urlRemoveSettings.replace('embed/', 'watch?v=')}>
+                        {urlRemoveSettings.replace('embed/', 'watch?v=')}
                       </a>
                       : 'Invalid URL stored'
                     }

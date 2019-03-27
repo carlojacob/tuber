@@ -27,11 +27,25 @@ const parseUrl = url => {
   return parsed
 }
 
-const createEmbedUrl = videoId => {
-  return `https://www.youtube.com/embed/${videoId}`
+const createEmbedUrl = (videoId, settings) => {
+  let auto = 0
+  let loop = 0
+  if (settings) {
+    if (settings.autoplay) {
+      auto = 1
+    }
+    if (settings.loop) {
+      loop = 1
+    }
+  }
+  if (settings) {
+    return `https://www.youtube.com/embed/${videoId}?autoplay=${auto}&loop=${loop}`
+  } else {
+    return `https://www.youtube.com/embed/${videoId}`
+  }
 }
 
-const convertUrl = url => {
+const convertUrl = (url, settings) => {
   if (checkUrl(url) === false) {
     return false
   }
@@ -51,7 +65,7 @@ const convertUrl = url => {
   if (videoId === false) {
     return false
   }
-  return createEmbedUrl(videoId)
+  return createEmbedUrl(videoId, settings)
 }
 
 export default convertUrl

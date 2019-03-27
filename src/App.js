@@ -131,7 +131,11 @@ class App extends Component {
               onGetSettings={this.onGetSettings} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id' render={({ match }) => (
-            <Video alert={this.alert} user={user} match={match} />
+            <Video
+              alert={this.alert}
+              user={user}
+              settings={this.state.settings}
+              match={match} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
             <VideoCreate alert={this.alert} user={user} />
