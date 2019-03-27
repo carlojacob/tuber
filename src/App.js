@@ -15,7 +15,10 @@ import Video from './videos/components/Video/Video'
 import VideoCreate from './videos/components/VideoCreate/VideoCreate'
 import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
-import Alert from 'react-bootstrap/Alert'
+import { Alert } from 'react-bootstrap'
+
+import { getSettings, updateSettings } from './settings/api'
+import messages from './settings/messages'
 
 class App extends Component {
   constructor () {
@@ -23,7 +26,11 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      settings: {
+        autoplay: { checked: false },
+        loop: { checked: false }
+      }
     }
   }
 
@@ -47,12 +54,50 @@ class App extends Component {
     }, 2000)
   }
 
+  // Function for loading user settings.
+  onGetSettings = () => {
+    getSettings(this.state.user)
+      .then(response => this.setState({ settings: response.data.settings[0] }))
+      .catch(error => {
+        alert(messages.getSettingsFailure, 'danger')
+        console.error(error)
+      })
+  }
+
+  // Functions for updating user settings.
+  handleAutoplayChange = checked => {
+    const updatedFields = {
+      autoplay: { checked },
+      loop: { checked: this.state.settings.loop.checked }
+    }
+    this.setState({ settings:
+      { ...this.state.settings, ...updatedFields }
+    })
+    updateSettings(this.state.user, this.state.settings)
+  }
+
+  handleLoopChange = checked => {
+    const updatedFields = {
+      autoplay: { checked: this.state.settings.autoplay.checked },
+      loop: { checked }
+    }
+    this.setState({ settings:
+      { ...this.state.settings, ...updatedFields }
+    })
+    updateSettings(this.state.user, this.state.settings)
+  }
+
   render () {
     const { alerts, user } = this.state
 
     return (
       <Fragment>
-        <Header user={user} alert={this.alert} />
+        <Header
+          user={user}
+          alert={this.alert}
+          settings={this.state.settings}
+          handleAutoplayChange={this.handleAutoplayChange}
+          handleLoopChange={this.handleLoopChange} />
         {alerts.map((alert, index) => (
           <Alert className={alert.fade ? 'fade-out' : ''}key={index} dismissible variant={alert.type}>
             <Alert.Heading>
@@ -79,7 +124,11 @@ class App extends Component {
           )} />
 
           <AuthenticatedRoute user={user} exact path='/videos' render={() => (
-            <Videos alert={this.alert} user={user} />
+            <Videos
+              alert={this.alert}
+              user={user}
+              settings={this.state.settings}
+              onGetSettings={this.onGetSettings} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id' render={({ match }) => (
             <Video alert={this.alert} user={user} match={match} />

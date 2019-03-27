@@ -10,7 +10,7 @@ const tuberSmallLogo = require('./tuberSmallLogo.png')
 
 class Header extends Component {
   render () {
-    const { user, alert } = this.props
+    const { user, alert, settings, handleAutoplayChange, handleLoopChange } = this.props
 
     const authenticatedOptions = (
       <Fragment>
@@ -20,7 +20,12 @@ class Header extends Component {
           Settings
           </Dropdown.Toggle>
           <Dropdown.Menu className="my-dropdown-menu my-auth">
-            <Settings user={user} alert={alert} />
+            <Settings
+              user={user}
+              alert={alert}
+              settings={settings}
+              handleAutoplayChange={handleAutoplayChange}
+              handleLoopChange={handleLoopChange} />
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown alignRight className="btn-ml">

@@ -29,6 +29,9 @@ class Videos extends Component {
         this.setState({ videos: saveVideos })
       })
       .catch(console.error)
+
+    const { onGetSettings } = this.props
+    onGetSettings()
   }
 
   render () {
