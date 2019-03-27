@@ -64,6 +64,7 @@ class App extends Component {
           <Route exact path='/' render={() => (
             <HomeLogo alert={this.alert} />
           )} />
+
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -76,6 +77,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+
           <AuthenticatedRoute user={user} exact path='/videos' render={() => (
             <Videos alert={this.alert} user={user} />
           )} />

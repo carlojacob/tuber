@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import Switch from 'react-switch'
 
+import { getSettings } from './api'
+
 import '../header/Header.scss'
 
 class Settings extends Component {
@@ -29,6 +31,15 @@ class Settings extends Component {
       loop: { checked: checked }
     }
     })
+  }
+
+  componentDidMount () {
+    console.log(this.props)
+    getSettings(this.props)
+      .then(response => this.setState({ settings: response.data.setting }))
+      .then(console.log)
+
+      .catch(console.error)
   }
 
   render () {
