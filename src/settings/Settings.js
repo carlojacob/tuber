@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Switch from 'react-switch'
 
-import { getSettings } from './api'
+import { getSettings, updateSettings } from './api'
 import messages from './messages'
 
 import '../header/Header.scss'
@@ -19,19 +19,25 @@ class Settings extends Component {
   }
 
   handleAutoplayChange = checked => {
-    this.setState({ settings: {
-      autoplay: { checked: checked },
+    const updatedFields = {
+      autoplay: { checked },
       loop: { checked: this.state.settings.loop.checked }
     }
+    this.setState({ settings:
+      { ...this.state.settings, ...updatedFields }
     })
+    updateSettings(this.props.user, this.state.settings)
   }
 
   handleLoopChange = checked => {
-    this.setState({ settings: {
+    const updatedFields = {
       autoplay: { checked: this.state.settings.autoplay.checked },
-      loop: { checked: checked }
+      loop: { checked }
     }
+    this.setState({ settings:
+      { ...this.state.settings, ...updatedFields }
     })
+    updateSettings(this.props.user, this.state.settings)
   }
 
   componentDidMount () {
