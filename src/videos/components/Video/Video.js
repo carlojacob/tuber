@@ -84,9 +84,15 @@ class Video extends Component {
           <Col sm={12} md={8} className="aspect-ratio">
             <div className="centered-video">
               {!url
-                ? <iframe className="full-video-dims" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+                ? <iframe
+                  className="full-video-dims"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                  allow="autoplay">
                 </iframe>
-                : <iframe className="full-video-dims" src={url}>
+                : <iframe
+                  className="full-video-dims"
+                  src={url}
+                  allow="autoplay">
                 </iframe>
               }
             </div>
