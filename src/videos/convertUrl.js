@@ -39,7 +39,13 @@ const createEmbedUrl = (videoId, settings) => {
     }
   }
   if (settings) {
-    return `https://www.youtube.com/embed/${videoId}?autoplay=${auto}&loop=${loop}`
+    let playlistId
+    if (loop === 1) {
+      playlistId = videoId
+    } else {
+      playlistId = ''
+    }
+    return `https://www.youtube.com/embed/${videoId}?autoplay=${auto}&loop=${loop}&playlist=${playlistId}`
   } else {
     return `https://www.youtube.com/embed/${videoId}`
   }
