@@ -64,14 +64,14 @@ class Videos extends Component {
           <h2 className="videos-header-text">
             Your Tubes
           </h2>
-          <Form controlId="searchTerm">
+          <Form.Group controlId="searchTerm">
             <Form.Control
               name="searchTerm"
               value={searchTerm}
               placeholder="Search Tubes"
               onChange={this.handleChange}
             />
-          </Form>
+          </Form.Group>
           <Link to='/video-create'>
             <button className="add-tube-btn">+</button>
           </Link>
