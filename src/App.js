@@ -72,7 +72,7 @@ class App extends Component {
     getSettings(this.state.user)
       .then(response => this.setState({ settings: response.data.settings[0] }))
       .catch(error => {
-        alert(messages.getSettingsFailure, 'danger')
+        this.alert(messages.getSettingsFailure, 'danger')
         console.error(error)
       })
   }
@@ -147,7 +147,6 @@ class App extends Component {
             <Videos
               alert={this.alert}
               user={user}
-              settings={this.state.settings}
               onGetSettings={this.onGetSettings} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id' render={({ match }) => (
