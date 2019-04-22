@@ -14,7 +14,7 @@ The deployed sites for this project are located here:
 
 [Tuber Client](https://carlojacob.github.io/tuber)
 
-[Tuber API](https://tuber-ccjwdi.herokuapp.com/)
+[Tuber API](https://tuber-ccj.herokuapp.com/)
 
 ### What is Tuber
 **Noun: Avid YouTube user** | *NOT a potato*

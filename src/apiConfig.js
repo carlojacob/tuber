@@ -1,6 +1,6 @@
 let apiUrl
 const apiUrls = {
-  production: 'https://tuber-ccjwdi.herokuapp.com',
+  production: 'https://tuber-ccj.herokuapp.com',
   development: 'http://localhost:4741'
 }
 
