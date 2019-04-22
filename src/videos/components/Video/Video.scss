@@ -86,7 +86,11 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .centered-video-table {
+    top: 30vmin;
+  }
+
   .full-video-dims {
     height: 60vmin;
     width: 80vmin;
