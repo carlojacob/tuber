@@ -52,7 +52,7 @@ class Videos extends Component {
   }
 
   render () {
-    const { videos, searchTerm } = this.state
+    const { videos, searchTerm, videosSearch } = this.state
 
     if (videos === null) {
       return <p>Loading...</p>
@@ -82,12 +82,20 @@ class Videos extends Component {
         }
         <Container>
           <Row className="videos-row">
-            {videos.map(video => (
-              <VideosCard
-                key={video._id}
-                video={video}
-              />
-            ))}
+            {videosSearch
+              ? videosSearch.map(video => (
+                <VideosCard
+                  key={video._id}
+                  video={video}
+                />
+              ))
+              : videos.map(video => (
+                <VideosCard
+                  key={video._id}
+                  video={video}
+                />
+              ))
+            }
           </Row>
         </Container>
       </Fragment>
