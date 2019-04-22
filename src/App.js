@@ -38,6 +38,13 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
+  clearSettings = () => this.setState({
+    settings: {
+      autoplay: { checked: false },
+      loop: { checked: false }
+    }
+  })
+
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type, fade: false }] })
     setTimeout(() => {
@@ -126,7 +133,11 @@ class App extends Component {
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
+            <SignOut
+              alert={this.alert}
+              clearUser={this.clearUser}
+              user={user}
+              clearSettings={this.clearSettings} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
