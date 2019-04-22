@@ -41,7 +41,7 @@ class Header extends Component {
     )
 
     const unauthenticatedOptions = (
-      <Dropdown alignRight>
+      <Dropdown alignRight className="btn-ml">
         <Dropdown.Toggle variant="primary-outline" id="account-dropdown">
         Account
         </Dropdown.Toggle>

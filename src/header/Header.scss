@@ -104,13 +104,24 @@
 }
 
 @media (max-width: 450px) {
+  nav > .btn-mr {
+    // margin-bottom: .5rem;
+    margin-right: 0;
+  }
+
+  nav > .btn-ml {
+    margin-left: 0;
+    margin-top: .5rem;
+  }
+
   .main-header > nav {
     flex-direction: column;
     width: 100%;
 
     a,
     span {
-      border: 1px solid $charcoal;
+      // Template edit
+      // border: 1px solid $charcoal;
       margin-bottom: 5px;
       text-align: center;
       width: 80%;
