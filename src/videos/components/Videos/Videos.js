@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Alert, Container, Row } from 'react-bootstrap'
+import { Alert, Container, Form, Row } from 'react-bootstrap'
 
 import VideosCard from '../VideosCard/VideosCard'
 
@@ -14,8 +14,25 @@ class Videos extends Component {
     super()
 
     this.state = {
-      videos: null
+      videos: null,
+      videosSearch: null,
+      searchTerm: ''
     }
+  }
+
+  handleChange = event => {
+    this.setState({ searchTerm: event.target.value })
+    const filteredVideos = this.state.videos.filter(video => {
+      return (
+        video.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        video.artist.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        video.album.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        video.description.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+    })
+    this.setState({
+      videosSearch: filteredVideos
+    })
   }
 
   componentDidMount () {
@@ -35,7 +52,7 @@ class Videos extends Component {
   }
 
   render () {
-    const { videos } = this.state
+    const { videos, searchTerm } = this.state
 
     if (videos === null) {
       return <p>Loading...</p>
@@ -47,6 +64,14 @@ class Videos extends Component {
           <h2 className="videos-header-text">
             Your Tubes
           </h2>
+          <Form controlId="searchTerm">
+            <Form.Control
+              name="searchTerm"
+              value={searchTerm}
+              placeholder="Search Tubes"
+              onChange={this.handleChange}
+            />
+          </Form>
           <Link to='/video-create'>
             <button className="add-tube-btn">+</button>
           </Link>
