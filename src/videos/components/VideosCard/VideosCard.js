@@ -10,7 +10,7 @@ const convertUrlToThumb = url => {
 }
 
 const VideosCard = ({ video }) => (
-  <Col className="video-col">
+  <Col xs={12} sm={6} md={4} lg={3} className="video-col">
     <Link to={`/videos/${video._id}`} className="video-link">
       <Card className="video-wrapper">
         <Card.Img className="video-img" variant="top" src={video.url
@@ -37,7 +37,7 @@ const VideosCard = ({ video }) => (
         </ListGroup>
         <Card.Body className="video-details video-description-dims">
           <Card.Text>
-            <b>Description:</b> {stringLimit(video.description, 160)}
+            <b>Description:</b> {stringLimit(video.description, 170)}
           </Card.Text>
         </Card.Body>
       </Card>
