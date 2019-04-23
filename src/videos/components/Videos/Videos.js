@@ -61,10 +61,10 @@ class Videos extends Component {
     return (
       <Fragment>
         <div className="videos-header">
-          <h2 className="videos-header-text">
+          <h2 className="videos-header-text m0">
             Your Tubes
           </h2>
-          <Form.Group controlId="searchTerm">
+          <Form.Group className="m0" controlId="searchTerm">
             <Form.Control
               name="searchTerm"
               value={searchTerm}

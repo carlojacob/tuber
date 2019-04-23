@@ -1,15 +1,5 @@
 @import '../../../css/colors';
 
-.videos-header-text {
-  font-weight: bold;
-}
-
-.videos-header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-
 .add-tube-btn {
   background-image: linear-gradient($add-btn-color-dark, $add-btn-color-bright, $add-btn-color-dark);
   border-radius: 15px;
@@ -28,7 +18,21 @@
   }
 }
 
+.m0 {
+  margin: 0;
+}
+
 .table-head {
+  font-weight: bold;
+}
+
+.videos-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.videos-header-text {
   font-weight: bold;
 }
 
