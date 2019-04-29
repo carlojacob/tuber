@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-import './VideoAdd.scss'
-
 const VideoAdd = () => (
   <div className="video-add-header">
     <div className="video-add-header-inline">

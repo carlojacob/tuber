@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Card, ListGroup, ListGroupItem, Col } from 'react-bootstrap'
 
 import stringLimit from '../../stringLimit'
-import './VideosCard.scss'
 
 const convertUrlToThumb = url => {
   return `https://img.youtube.com/vi/${url.split('embed/')[1]}/0.jpg`

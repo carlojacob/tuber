@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import './App.scss'
 import { Route } from 'react-router-dom'
+import { Alert } from 'react-bootstrap'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -16,7 +16,11 @@ import VideoAdd from './videos/components/VideoAdd/VideoAdd'
 import VideoCreateManual from './videos/components/VideoCreateManual/VideoCreateManual'
 import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
-import { Alert } from 'react-bootstrap'
+import './App.scss'
+import './videos/components/Video/Video.scss'
+import './videos/components/VideoAdd/VideoAdd.scss'
+import './videos/components/Videos/Videos.scss'
+import './videos/components/VideosCard/VideosCard.scss'
 
 import { getSettings, updateSettings, createSettings } from './settings/api'
 import messages from './settings/messages'

@@ -8,8 +8,6 @@ import convertUrl from '../../convertUrl'
 import messages from '../../messages'
 import stringLimit from '../../stringLimit'
 
-import './Video.scss'
-
 class Video extends Component {
   constructor () {
     super()

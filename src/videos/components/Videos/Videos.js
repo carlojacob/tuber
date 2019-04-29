@@ -7,8 +7,6 @@ import VideosCard from '../VideosCard/VideosCard'
 import { getVideos } from '../../api'
 import convertUrl from '../../convertUrl'
 
-import './Videos.scss'
-
 class Videos extends Component {
   constructor () {
     super()
