@@ -13,7 +13,7 @@ import ChangePassword from './auth/components/ChangePassword'
 import Videos from './videos/components/Videos/Videos'
 import Video from './videos/components/Video/Video'
 import VideoAdd from './videos/components/VideoAdd/VideoAdd'
-import VideoCreate from './videos/components/VideoCreate/VideoCreate'
+import VideoCreateManual from './videos/components/VideoCreateManual/VideoCreateManual'
 import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
 import { Alert } from 'react-bootstrap'
@@ -161,7 +161,7 @@ class App extends Component {
             <VideoAdd />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
-            <VideoCreate alert={this.alert} user={user} />
+            <VideoCreateManual alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id/edit' render={({ match }) => (
             <VideoEdit alert={this.alert} user={user} match={match} />
