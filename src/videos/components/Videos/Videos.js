@@ -72,7 +72,7 @@ class Videos extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Link to='/video-create'>
+          <Link to='/video-add'>
             <button className="add-tube-btn">+</button>
           </Link>
         </div>

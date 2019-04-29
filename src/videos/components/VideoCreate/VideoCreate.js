@@ -6,7 +6,7 @@ import messages from '../../messages'
 
 import VideoForm from '../VideoForm/VideoForm'
 
-class VideoCreate extends Component {
+class VideoCreateManual extends Component {
   constructor () {
     super()
 
@@ -64,4 +64,4 @@ class VideoCreate extends Component {
   }
 }
 
-export default VideoCreate
+export default VideoCreateManual

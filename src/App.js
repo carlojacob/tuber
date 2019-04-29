@@ -12,6 +12,7 @@ import ChangePassword from './auth/components/ChangePassword'
 
 import Videos from './videos/components/Videos/Videos'
 import Video from './videos/components/Video/Video'
+import VideoAdd from './videos/components/VideoAdd/VideoAdd'
 import VideoCreate from './videos/components/VideoCreate/VideoCreate'
 import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
@@ -155,6 +156,9 @@ class App extends Component {
               user={user}
               settings={this.state.settings}
               match={match} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/video-add' render={() => (
+            <VideoAdd />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
             <VideoCreate alert={this.alert} user={user} />

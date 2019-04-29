@@ -63,7 +63,7 @@ const VideoForm = ({ handleSubmit, handleChange, video, videoId }) => (
     </Form.Group>
 
     <Form.Group className="btn-flex-end">
-      <Link to={videoId ? `/videos/${videoId}` : '/videos'}>
+      <Link to={videoId ? `/videos/${videoId}` : '/video-add'}>
         <Button
           variant="primary-outline"
           className="btn-mr">
