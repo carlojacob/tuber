@@ -32,7 +32,7 @@ class VideoSearchYoutube extends Component {
   }
 
   render () {
-    const { youtubeSearchTerm } = this.state
+    const { youtubeSearchTerm, youtubeSearchResults } = this.state
 
     return (
       <Fragment>
@@ -64,6 +64,13 @@ class VideoSearchYoutube extends Component {
             </Button>
           </div>
         </div>
+        {youtubeSearchResults
+          ? youtubeSearchResults.map(video => (
+            <div
+              key={video.id.videoId}>{video.id.videoId}
+            </div>
+          ))
+          : ''}
       </Fragment>
     )
   }
