@@ -7,7 +7,7 @@ const VideoForm = ({ handleSubmit, handleChange, video, videoId }) => (
     className="auth-form"
     onSubmit={handleSubmit}>
     <h3 className="tuber-form-heading">
-      {videoId ? 'Edit Video' : 'Add Video'}
+      {videoId ? 'Edit Video' : 'Add Video Manually'}
     </h3>
     <Form.Group controlId="title">
       <Form.Label className="tuber-form-label">Title</Form.Label>
