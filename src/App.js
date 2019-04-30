@@ -13,6 +13,7 @@ import ChangePassword from './auth/components/ChangePassword'
 import Videos from './videos/components/Videos/Videos'
 import Video from './videos/components/Video/Video'
 import VideoAdd from './videos/components/VideoAdd/VideoAdd'
+import VideoSearchYoutube from './videos/components/VideoSearchYoutube/VideoSearchYoutube'
 import VideoCreateManual from './videos/components/VideoCreateManual/VideoCreateManual'
 import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
@@ -21,6 +22,7 @@ import './videos/components/Video/Video.scss'
 import './videos/components/VideoAdd/VideoAdd.scss'
 import './videos/components/Videos/Videos.scss'
 import './videos/components/VideosCard/VideosCard.scss'
+import './videos/components/VideoSearchYoutube/VideoSearchYoutube.scss'
 
 import { getSettings, updateSettings, createSettings } from './settings/api'
 import messages from './settings/messages'
@@ -163,6 +165,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/video-add' render={() => (
             <VideoAdd />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/video-add-youtube' render={() => (
+            <VideoSearchYoutube alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
             <VideoCreateManual alert={this.alert} user={user} />
