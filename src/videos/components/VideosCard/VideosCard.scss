@@ -20,6 +20,10 @@
   flex-grow: 0;
 }
 
+.video-description-border {
+  border-top: 1px solid $card-thin-border;
+}
+
 .videos-row {
   display: flex;
   justify-content: flex-start;
