@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
+import VideosCard from '../VideosCard/VideosCard'
+
 import getYoutubeVideoData from './youtube-api'
 
 class VideoSearchYoutube extends Component {
@@ -21,11 +23,9 @@ class VideoSearchYoutube extends Component {
   handleClick = event => {
     event.preventDefault()
 
-    console.log(this.state.youtubeSearchTerm)
     getYoutubeVideoData(this.state.youtubeSearchTerm)
       .then(response => {
         this.setState({ youtubeSearchResults: response.data.items })
-        console.log(response.data.items)
       })
     // TODO: Empty search field on successful search only.
     this.setState({ youtubeSearchTerm: '' })
@@ -66,11 +66,14 @@ class VideoSearchYoutube extends Component {
         </div>
         {youtubeSearchResults
           ? youtubeSearchResults.map(video => (
-            <div
-              key={video.id.videoId}>{video.id.videoId}
-            </div>
+            <VideosCard
+              key={video.id.videoId}
+              video={video}
+              url={`https://www.youtube.com/embed/${video.id.videoId}`}
+            />
           ))
-          : ''}
+          : null
+        }
       </Fragment>
     )
   }
