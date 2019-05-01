@@ -1,4 +1,5 @@
 $black: #000;
+$faint-black: rgba(0, 0, 0, .125);
 $charcoal: #ccc;
 $dark-red: #b00;
 $dark-red-focus: rgba(187, 0, 0, .5);
@@ -18,6 +19,7 @@ $add-btn-text-hover-color: $snow2;
 $body-background: $snow2;
 $card-background-color: $snow;
 $card-border-color: $gray20;
+$card-thin-border: $faint-black;
 $img-border-color: $card-border-color;
 $youtube-red: $red;
 $youtube-red-dark: $dark-red;
