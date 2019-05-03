@@ -22,14 +22,14 @@ const VideosCard = ({ video }) => (
         />
         <Card.Body className="video-details video-title-dims">
           <Card.Title className="video-title">{video.url
-            ? stringLimit(replaceQuotes(video.title, 80))
+            ? stringLimit(replaceQuotes(video.title), 80)
             : <Fragment>
               {!(video.title === undefined)
                 ? <span>
-                  {stringLimit(replaceQuotes(video.title, 55))}
+                  {stringLimit(replaceQuotes(video.title), 55)}
                   <span><br /><i>{'Haha!'}</i></span>
                 </span>
-                : stringLimit(replaceQuotes(video.snippet.title, 80))
+                : stringLimit(replaceQuotes(video.snippet.title), 80)
               }
             </Fragment>}
           </Card.Title>
@@ -37,10 +37,10 @@ const VideosCard = ({ video }) => (
         {!(video.artist === undefined)
           ? <ListGroup className="list-group-flush video-card-body">
             <ListGroupItem className="video-details video-artist-dims">
-              <b>Artist: </b> {stringLimit(replaceQuotes(video.artist, 75))}
+              <b>Artist: </b> {stringLimit(replaceQuotes(video.artist), 72)}
             </ListGroupItem>
             <ListGroupItem className="video-details video-album-dims">
-              <b>Album: </b> {stringLimit(replaceQuotes(video.album, 73))}
+              <b>Album: </b> {stringLimit(replaceQuotes(video.album), 70)}
             </ListGroupItem>
           </ListGroup>
           : null
@@ -49,8 +49,8 @@ const VideosCard = ({ video }) => (
           <Card.Text>
             <b>Description: </b>
             {!(video.description === undefined)
-              ? stringLimit(replaceQuotes(video.description, 170))
-              : stringLimit(replaceQuotes(video.snippet.description, 170))
+              ? stringLimit(replaceQuotes(video.description), 170)
+              : stringLimit(replaceQuotes(video.snippet.description), 170)
             }
           </Card.Text>
         </Card.Body>
