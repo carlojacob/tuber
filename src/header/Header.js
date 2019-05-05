@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Dropdown } from 'react-bootstrap'
+import { Dropdown, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import Settings from '../settings/Settings'
@@ -14,8 +14,12 @@ class Header extends Component {
 
     const authenticatedOptions = (
       <Fragment>
-        <Link to="/videos">Your Tubes</Link>
-        <Dropdown alignRight className="btn-mr">
+        <Link to="/videos">
+          <Button variant="primary-outline">
+            Your Tubes
+          </Button>
+        </Link>
+        <Dropdown alignRight className="btn-ml btn-mr">
           <Dropdown.Toggle variant="primary-outline" id="account-dropdown">
           Settings
           </Dropdown.Toggle>
