@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Container, Row, Form, Button } from 'react-bootstrap'
 
 import VideosCard from '../VideosCard/VideosCard'
 
@@ -64,16 +64,20 @@ class VideoSearchYoutube extends Component {
             </Button>
           </div>
         </div>
-        {youtubeSearchResults
-          ? youtubeSearchResults.map(video => (
-            <VideosCard
-              key={video.id.videoId}
-              video={video}
-              url={`https://www.youtube.com/embed/${video.id.videoId}`}
-            />
-          ))
-          : null
-        }
+        <Container>
+          <Row className="videos-row">
+            {youtubeSearchResults
+              ? youtubeSearchResults.map(video => (
+                <VideosCard
+                  key={video.id.videoId}
+                  video={video}
+                  url={`https://www.youtube.com/embed/${video.id.videoId}`}
+                />
+              ))
+              : null
+            }
+          </Row>
+        </Container>
       </Fragment>
     )
   }
