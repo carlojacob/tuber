@@ -27,7 +27,7 @@ const parseUrl = url => {
   return parsed
 }
 
-const createEmbedUrl = (videoId, settings) => {
+export const createEmbedUrl = (videoId, settings) => {
   let auto = 0
   let loop = 0
   if (settings) {
