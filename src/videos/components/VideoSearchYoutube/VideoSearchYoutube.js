@@ -23,10 +23,13 @@ class VideoSearchYoutube extends Component {
   handleClick = event => {
     event.preventDefault()
 
+    const { setYoutubeSearchResults } = this.props
+
     getYoutubeVideoData(this.state.youtubeSearchTerm)
       .then(response => {
         this.setState({ youtubeSearchResults: response.data.items })
       })
+      .then(() => setYoutubeSearchResults(this.state.youtubeSearchResults))
     // TODO: Empty search field on successful search only.
     this.setState({ youtubeSearchTerm: '' })
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Table, Button } from 'react-bootstrap'
@@ -41,7 +41,7 @@ class Video extends Component {
   componentDidMount () {
     const { alert, settings } = this.props
 
-    if (this.props.video === null) {
+    if (this.props.youtubeSearchResults === undefined) {
       getVideo(this.props)
         .then(response => this.setState({ video: response.data.video }))
         .then(() => this.setState({ video: {
@@ -67,36 +67,30 @@ class Video extends Component {
       }} />
     }
 
-    if (!(video || this.props.video)) {
+    if (!(video || this.props.match.url.includes('search'))) {
       return <p>Loading...</p>
     }
 
-    const { artist, title, album, description, url } = video
+    let artist, title, album, description, url, selectedVideo
+
+    if (video) {
+      artist = video.artist
+      title = video.title
+      album = video.album
+      description = video.description
+      url = video.url
+    } else if (this.props.youtubeSearchResults) {
+      selectedVideo = this.props.youtubeSearchResults.find(video =>
+        video.id.videoId === this.props.match.params.id
+      )
+      title = selectedVideo.snippet.title
+      description = selectedVideo.snippet.description
+      url = createEmbedUrl(selectedVideo.id.videoId, this.props.settings)
+    }
 
     let urlRemoveSettings = ''
     if (url) {
       urlRemoveSettings = url.split('?autoplay')[0]
-    }
-
-    // let youtubeVideoUrl
-    // let currentSettings
-
-    if (this.props.video) {
-      // youtubeVideo = this.props.video
-      // const currentSettings = this.props.settings
-      // let auto = 0
-      // let loop = 0
-      // let playlistId = ''
-      // if (currentSettings.autoplay.checked) {
-      //   auto = 1
-      // }
-      // if (currentSettings.loop.checked) {
-      //   loop = 1
-      //   playlistId = youtubeVideo.id.videoId
-      // }
-      // youtubeVideo.url = `https://www.youtube.com/embed/${youtubeVideo.id.videoId}?autoplay=${auto}&loop=${loop}&playlist=${playlistId}`
-      const youtubeVideoUrl = createEmbedUrl(this.props.video.id.videoId, this.props.settings)
-      console.log(youtubeVideoUrl)
     }
 
     return (
@@ -121,14 +115,19 @@ class Video extends Component {
                 </tr>
               </tbody>
               <tbody>
-                <tr>
-                  <th><p className="video-show video-head">Artist:</p></th>
-                  <td><p className="video-show video-text">{stringLimit(artist, 60)}</p></td>
-                </tr>
-                <tr>
-                  <th><p className="video-show video-head">Album:</p></th>
-                  <td><p className="video-show video-text">{stringLimit(album, 60)}</p></td>
-                </tr>
+                {!(artist === undefined)
+                  ? <Fragment>
+                    <tr>
+                      <th><p className="video-show video-head">Artist:</p></th>
+                      <td><p className="video-show video-text">{stringLimit(artist, 60)}</p></td>
+                    </tr>
+                    <tr>
+                      <th><p className="video-show video-head">Album:</p></th>
+                      <td><p className="video-show video-text">{stringLimit(album, 60)}</p></td>
+                    </tr>
+                  </Fragment>
+                  : null
+                }
                 <tr>
                   <th><p className="video-show video-head">Description:</p></th>
                   <td><p className="video-show video-text">{stringLimit(description, 150)}</p></td>

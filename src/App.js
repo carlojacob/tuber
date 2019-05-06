@@ -37,7 +37,8 @@ class App extends Component {
       settings: {
         autoplay: { checked: false },
         loop: { checked: false }
-      }
+      },
+      youtubeSearchResults: null
     }
   }
 
@@ -107,6 +108,11 @@ class App extends Component {
     updateSettings(this.state.user, this.state.settings)
   }
 
+  // Function for storing YouTube search results in state
+  setYoutubeSearchResults = youtubeSearchResults => {
+    this.setState({ youtubeSearchResults })
+  }
+
   render () {
     const { alerts, user } = this.state
 
@@ -163,17 +169,22 @@ class App extends Component {
               settings={this.state.settings}
               match={match} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/video-show-youtube' render={({ match }) => (
-            <Video
-              alert={this.alert}
-              user={user}
-              settings={this.state.settings} />
-          )} />
           <AuthenticatedRoute user={user} exact path='/video-add' render={() => (
             <VideoAdd />
           )} />
-          <AuthenticatedRoute user={user} exact path='/video-add-youtube' render={() => (
-            <VideoSearchYoutube alert={this.alert} user={user} />
+          <AuthenticatedRoute user={user} exact path='/video-search-youtube' render={() => (
+            <VideoSearchYoutube
+              alert={this.alert}
+              user={user}
+              setYoutubeSearchResults={this.setYoutubeSearchResults} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/video-search-youtube/:id' render={({ match }) => (
+            <Video
+              alert={this.alert}
+              user={user}
+              settings={this.state.settings}
+              match={match}
+              youtubeSearchResults={this.state.youtubeSearchResults} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
             <VideoCreateManual alert={this.alert} user={user} />
