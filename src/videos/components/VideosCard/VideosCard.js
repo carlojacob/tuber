@@ -13,7 +13,7 @@ const VideosCard = ({ video }) => (
   <Col xs={12} sm={6} md={4} lg={3} className="video-col">
     <Link to={video._id
       ? `/videos/${video._id}`
-      : '/video-show-youtube'}
+      : `/video-search-youtube/${video.id.videoId}`}
     className="video-link"
     >
       <Card className="video-wrapper">
