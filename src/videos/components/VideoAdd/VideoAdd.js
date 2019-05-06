@@ -15,7 +15,7 @@ const VideoAdd = () => (
           Cancel
         </Button>
       </Link>
-      <Link to='/video-add-youtube'>
+      <Link to='/video-search-youtube'>
         <Button
           variant="primary"
           className="btn-mb">
