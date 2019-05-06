@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Table, Button } from 'react-bootstrap'
 
 import { getVideo, deleteVideo } from '../../api'
-import convertUrl from '../../convertUrl'
+import convertUrl, { createEmbedUrl } from '../../convertUrl'
 import messages from '../../messages'
 import stringLimit from '../../stringLimit'
 
@@ -41,19 +41,21 @@ class Video extends Component {
   componentDidMount () {
     const { alert, settings } = this.props
 
-    getVideo(this.props)
-      .then(response => this.setState({ video: response.data.video }))
-      .then(() => this.setState({ video: {
-        ...this.state.video,
-        url: convertUrl(this.state.video.url, settings)
-      }
-      }))
-      .then(() => {
-        if (this.state.video.url === false) {
-          alert(messages.rickError, 'danger')
+    if (this.props.video === null) {
+      getVideo(this.props)
+        .then(response => this.setState({ video: response.data.video }))
+        .then(() => this.setState({ video: {
+          ...this.state.video,
+          url: convertUrl(this.state.video.url, settings)
         }
-      })
-      .catch(console.error)
+        }))
+        .then(() => {
+          if (this.state.video.url === false) {
+            alert(messages.rickError, 'danger')
+          }
+        })
+        .catch(console.error)
+    }
   }
 
   render () {
@@ -65,7 +67,7 @@ class Video extends Component {
       }} />
     }
 
-    if (!video) {
+    if (!(video || this.props.video)) {
       return <p>Loading...</p>
     }
 
@@ -76,23 +78,38 @@ class Video extends Component {
       urlRemoveSettings = url.split('?autoplay')[0]
     }
 
+    // let youtubeVideoUrl
+    // let currentSettings
+
+    if (this.props.video) {
+      // youtubeVideo = this.props.video
+      // const currentSettings = this.props.settings
+      // let auto = 0
+      // let loop = 0
+      // let playlistId = ''
+      // if (currentSettings.autoplay.checked) {
+      //   auto = 1
+      // }
+      // if (currentSettings.loop.checked) {
+      //   loop = 1
+      //   playlistId = youtubeVideo.id.videoId
+      // }
+      // youtubeVideo.url = `https://www.youtube.com/embed/${youtubeVideo.id.videoId}?autoplay=${auto}&loop=${loop}&playlist=${playlistId}`
+      const youtubeVideoUrl = createEmbedUrl(this.props.video.id.videoId, this.props.settings)
+      console.log(youtubeVideoUrl)
+    }
+
     return (
       <Container>
         <Row className="video-show-margin">
           <Col sm={12} md={8} className="aspect-ratio">
             <div className="centered-video">
-              {!url
-                ? <iframe
-                  className="full-video-dims"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                  allow="autoplay">
-                </iframe>
-                : <iframe
-                  className="full-video-dims"
-                  src={url}
-                  allow="autoplay">
-                </iframe>
-              }
+              <iframe
+                className="full-video-dims"
+                src={url || 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+                }
+                allow="autoplay">
+              </iframe>
             </div>
           </Col>
           <Col sm={12} md={4} className="centered-video-table">

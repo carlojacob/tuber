@@ -13,7 +13,9 @@ const VideosCard = ({ video }) => (
   <Col xs={12} sm={6} md={4} lg={3} className="video-col">
     <Link to={video._id
       ? `/videos/${video._id}`
-      : '/video-add-youtube'} className="video-link">
+      : '/video-show-youtube'}
+    className="video-link"
+    >
       <Card className="video-wrapper">
         <Card.Img className="video-img" variant="top" src={video.url
           ? convertUrlToThumb(video.url)

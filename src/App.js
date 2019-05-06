@@ -163,6 +163,12 @@ class App extends Component {
               settings={this.state.settings}
               match={match} />
           )} />
+          <AuthenticatedRoute user={user} exact path='/video-show-youtube' render={({ match }) => (
+            <Video
+              alert={this.alert}
+              user={user}
+              settings={this.state.settings} />
+          )} />
           <AuthenticatedRoute user={user} exact path='/video-add' render={() => (
             <VideoAdd />
           )} />
