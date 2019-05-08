@@ -80,8 +80,8 @@ class Video extends Component {
       description = video.description
       url = video.url
     } else if (this.props.youtubeSearchResults) {
-      selectedVideo = this.props.youtubeSearchResults.find(video =>
-        video.id.videoId === this.props.match.params.id
+      selectedVideo = this.props.youtubeSearchResults.find(searchResult =>
+        searchResult.id.videoId === this.props.match.params.id
       )
       title = selectedVideo.snippet.title
       description = selectedVideo.snippet.description
@@ -150,14 +150,17 @@ class Video extends Component {
               </tbody>
             </Table>
             <div className="video-btn-flex">
-              <Button
-                variant="primary-outline"
-                className="btn-mr"
-                onClick={() => this.delVideo(this.props)}>
-                Delete
-              </Button>
-              <div className="btn-flex-end">
-                <Link to='/videos'>
+              {video
+                ? <Button
+                  variant="primary-outline"
+                  className="btn-mr"
+                  onClick={() => this.delVideo(this.props)}>
+                  Delete
+                </Button>
+                : null
+              }
+              <div className={video ? 'btn-flex-end' : ''}>
+                <Link to={video ? '/videos' : '/video-search-youtube'}>
                   <Button variant="primary-outline" className="btn-mr">
                     Back
                   </Button>
