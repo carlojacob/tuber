@@ -149,7 +149,7 @@ class Video extends Component {
                 </tr>
               </tbody>
             </Table>
-            <div className="video-btn-flex">
+            <div className={video ? 'video-btn-flex' : 'btn-flex-end'}>
               {video
                 ? <Button
                   variant="primary-outline"
@@ -166,7 +166,7 @@ class Video extends Component {
                   </Button>
                 </Link>
                 <Link to={`/videos/${this.props.match.params.id}/edit`}>
-                  <Button variant="primary" className="btn-ml">Edit</Button>
+                  <Button variant="primary" className="btn-ml">{video ? 'Edit' : 'Save Tube'}</Button>
                 </Link>
               </div>
             </div>
