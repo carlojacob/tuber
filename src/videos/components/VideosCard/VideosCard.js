@@ -19,7 +19,9 @@ const VideosCard = ({ video }) => (
       <Card className="video-wrapper">
         <Card.Img className="video-img" variant="top" src={video.url
           ? convertUrlToThumb(video.url)
-          : (video._id ? 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg' : `https://img.youtube.com/vi/${video.id.videoId}/0.jpg`)
+          : (video._id
+            ? 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg'
+            : `https://img.youtube.com/vi/${video.id.videoId}/0.jpg`)
         }
         />
         <Card.Body className="video-details video-title-dims">
