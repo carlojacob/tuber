@@ -5,14 +5,14 @@ import { Container, Row, Form, Button } from 'react-bootstrap'
 import VideosCard from '../VideosCard/VideosCard'
 
 import getYoutubeVideoData from './youtube-api'
+import messages from '../../messages'
 
 class VideoSearchYoutube extends Component {
   constructor () {
     super()
 
     this.state = {
-      youtubeSearchTerm: '',
-      youtubeSearchResults: ''
+      youtubeSearchTerm: ''
     }
   }
 
@@ -23,19 +23,20 @@ class VideoSearchYoutube extends Component {
   handleClick = event => {
     event.preventDefault()
 
-    const { setYoutubeSearchResults } = this.props
+    const { alert, setYoutubeSearchResults } = this.props
 
     getYoutubeVideoData(this.state.youtubeSearchTerm)
-      .then(response => {
-        this.setState({ youtubeSearchResults: response.data.items })
+      .then(response => setYoutubeSearchResults(response.data.items))
+      .then(() => this.setState({ youtubeSearchTerm: '' }))
+      .catch(error => {
+        alert(messages.getYoutubeVideoDataFailure, 'danger')
+        console.error(error)
       })
-      .then(() => setYoutubeSearchResults(this.state.youtubeSearchResults))
-    // TODO: Empty search field on successful search only.
-    this.setState({ youtubeSearchTerm: '' })
   }
 
   render () {
-    const { youtubeSearchTerm, youtubeSearchResults } = this.state
+    const { youtubeSearchTerm } = this.state
+    const { youtubeSearchResults } = this.props
 
     return (
       <Fragment>

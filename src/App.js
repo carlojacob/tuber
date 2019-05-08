@@ -176,7 +176,8 @@ class App extends Component {
             <VideoSearchYoutube
               alert={this.alert}
               user={user}
-              setYoutubeSearchResults={this.setYoutubeSearchResults} />
+              setYoutubeSearchResults={this.setYoutubeSearchResults}
+              youtubeSearchResults={this.state.youtubeSearchResults} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-search-youtube/:id' render={({ match }) => (
             <Video
