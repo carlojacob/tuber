@@ -41,7 +41,7 @@ class Video extends Component {
   componentDidMount () {
     const { alert, settings } = this.props
 
-    if (this.props.youtubeSearchResults === undefined) {
+    if (this.props.selectedVideo === undefined) {
       getVideo(this.props)
         .then(response => this.setState({ video: response.data.video }))
         .then(() => this.setState({ video: {
@@ -71,7 +71,9 @@ class Video extends Component {
       return <p>Loading...</p>
     }
 
-    let artist, title, album, description, url, selectedVideo
+    let artist, title, album, description, url
+
+    const { selectedVideo } = this.props
 
     if (video) {
       artist = video.artist
@@ -79,10 +81,7 @@ class Video extends Component {
       album = video.album
       description = video.description
       url = video.url
-    } else if (this.props.youtubeSearchResults) {
-      selectedVideo = this.props.youtubeSearchResults.find(searchResult =>
-        searchResult.id.videoId === this.props.match.params.id
-      )
+    } else if (selectedVideo) {
       title = selectedVideo.snippet.title
       description = selectedVideo.snippet.description
       url = createEmbedUrl(selectedVideo.id.videoId, this.props.settings)

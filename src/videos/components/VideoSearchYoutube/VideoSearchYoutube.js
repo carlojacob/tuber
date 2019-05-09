@@ -36,7 +36,7 @@ class VideoSearchYoutube extends Component {
 
   render () {
     const { youtubeSearchTerm } = this.state
-    const { youtubeSearchResults } = this.props
+    const { youtubeSearchResults, setSelectedVideo } = this.props
 
     return (
       <Fragment>
@@ -75,7 +75,7 @@ class VideoSearchYoutube extends Component {
                 <VideosCard
                   key={video.id.videoId}
                   video={video}
-                  url={`https://www.youtube.com/embed/${video.id.videoId}`}
+                  setSelectedVideo={setSelectedVideo}
                 />
               ))
               : null

@@ -9,12 +9,15 @@ const convertUrlToThumb = url => {
   return `https://img.youtube.com/vi/${url.split('embed/')[1]}/0.jpg`
 }
 
-const VideosCard = ({ video }) => (
+const VideosCard = ({ video, setSelectedVideo }) => (
   <Col xs={12} sm={6} md={4} lg={3} className="video-col">
     <Link to={video._id
       ? `/videos/${video._id}`
       : `/video-search-youtube/${video.id.videoId}`}
     className="video-link"
+    onClick={video.id
+      ? () => setSelectedVideo(video.id.videoId)
+      : null}
     >
       <Card className="video-wrapper">
         <Card.Img className="video-img" variant="top" src={video.url
@@ -33,7 +36,7 @@ const VideosCard = ({ video }) => (
                   {stringLimit(replaceQuotes(video.title), 55)}
                   <span><br /><i>{'Haha!'}</i></span>
                 </span>
-                : stringLimit(replaceQuotes(video.snippet.title), 80)
+                : stringLimit(replaceQuotes(video.snippet.title), 67)
               }
             </Fragment>}
           </Card.Title>
@@ -53,8 +56,8 @@ const VideosCard = ({ video }) => (
           <Card.Text>
             <b>Description: </b>
             {!(video.description === undefined)
-              ? stringLimit(replaceQuotes(video.description), 170)
-              : stringLimit(replaceQuotes(video.snippet.description), 170)
+              ? stringLimit(replaceQuotes(video.description), 150)
+              : stringLimit(replaceQuotes(video.snippet.description), 150)
             }
           </Card.Text>
         </Card.Body>

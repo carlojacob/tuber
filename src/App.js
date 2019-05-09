@@ -38,7 +38,8 @@ class App extends Component {
         autoplay: { checked: false },
         loop: { checked: false }
       },
-      youtubeSearchResults: null
+      youtubeSearchResults: null,
+      selectedVideo: null
     }
   }
 
@@ -113,6 +114,13 @@ class App extends Component {
     this.setState({ youtubeSearchResults })
   }
 
+  // Function for storing the selected YouTube search result in state
+  setSelectedVideo = id =>
+    this.setState({ selectedVideo:
+      this.state.youtubeSearchResults.find(searchResult =>
+        searchResult.id.videoId === id)
+    })
+
   render () {
     const { alerts, user } = this.state
 
@@ -177,7 +185,8 @@ class App extends Component {
               alert={this.alert}
               user={user}
               setYoutubeSearchResults={this.setYoutubeSearchResults}
-              youtubeSearchResults={this.state.youtubeSearchResults} />
+              youtubeSearchResults={this.state.youtubeSearchResults}
+              setSelectedVideo={this.setSelectedVideo} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-search-youtube/:id' render={({ match }) => (
             <Video
@@ -185,6 +194,7 @@ class App extends Component {
               user={user}
               settings={this.state.settings}
               match={match}
+              selectedVideo={this.state.selectedVideo}
               youtubeSearchResults={this.state.youtubeSearchResults} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
