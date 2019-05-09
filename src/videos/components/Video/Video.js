@@ -164,7 +164,9 @@ class Video extends Component {
                     Back
                   </Button>
                 </Link>
-                <Link to={`/videos/${this.props.match.params.id}/edit`}>
+                <Link to={video
+                  ? `/videos/${this.props.match.params.id}/edit`
+                  : '/video-create'}>
                   <Button variant="primary" className="btn-ml">{video ? 'Edit' : 'Save Tube'}</Button>
                 </Link>
               </div>

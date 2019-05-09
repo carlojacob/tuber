@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
-const VideoForm = ({ handleSubmit, handleChange, video, videoId }) => (
+const VideoForm = ({ handleSubmit, handleChange, video, videoId, isFromYoutube }) => (
   <Form
     className="auth-form"
     onSubmit={handleSubmit}>
     <h3 className="tuber-form-heading">
-      {videoId ? 'Edit Video' : 'Add Video Manually'}
+      {videoId ? 'Edit Video' : (isFromYoutube ? 'Add From YouTube' : 'Add Video Manually')}
     </h3>
     <Form.Group controlId="title">
       <Form.Label className="tuber-form-label">Title</Form.Label>
@@ -63,7 +63,7 @@ const VideoForm = ({ handleSubmit, handleChange, video, videoId }) => (
     </Form.Group>
 
     <Form.Group className="btn-flex-end">
-      <Link to={videoId ? `/videos/${videoId}` : '/video-add'}>
+      <Link to={videoId ? `/videos/${videoId}` : (isFromYoutube ? `/video-search-youtube/${video.youtubeId}` : '/video-add')}>
         <Button
           variant="primary-outline"
           className="btn-mr">

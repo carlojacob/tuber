@@ -6,7 +6,7 @@ import messages from '../../messages'
 
 import VideoForm from '../VideoForm/VideoForm'
 
-class VideoCreateManual extends Component {
+class VideoCreate extends Component {
   constructor () {
     super()
 
@@ -16,6 +16,7 @@ class VideoCreateManual extends Component {
       album: '',
       description: '',
       url: '',
+      youtubeId: '',
       createdVideoId: null
     }
   }
@@ -45,8 +46,21 @@ class VideoCreateManual extends Component {
       .catch(console.error)
   }
 
+  componentDidMount () {
+    const { selectedVideo } = this.props
+
+    if (selectedVideo) {
+      this.setState({ title: selectedVideo.snippet.title })
+      this.setState({ description: selectedVideo.snippet.description })
+      this.setState({ url:
+        `https://www.youtube.com/watch?v=${selectedVideo.id.videoId}`
+      })
+      this.setState({ youtubeId: selectedVideo.id.videoId })
+    }
+  }
+
   render () {
-    const { artist, title, album, description, url, createdVideoId } = this.state
+    const { artist, title, album, description, url, youtubeId, createdVideoId } = this.state
 
     if (createdVideoId) {
       return <Redirect to={`/videos/${createdVideoId}`} />
@@ -54,14 +68,20 @@ class VideoCreateManual extends Component {
 
     const { handleChange, handleSubmit } = this
 
+    let isFromYoutube = false
+    if (this.props.selectedVideo) {
+      isFromYoutube = true
+    }
+
     return (
       <VideoForm
-        video={{ artist, title, album, description, url }}
+        video={{ artist, title, album, description, url, youtubeId }}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        isFromYoutube={isFromYoutube}
       />
     )
   }
 }
 
-export default VideoCreateManual
+export default VideoCreate

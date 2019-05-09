@@ -14,7 +14,7 @@ import Videos from './videos/components/Videos/Videos'
 import Video from './videos/components/Video/Video'
 import VideoAdd from './videos/components/VideoAdd/VideoAdd'
 import VideoSearchYoutube from './videos/components/VideoSearchYoutube/VideoSearchYoutube'
-import VideoCreateManual from './videos/components/VideoCreateManual/VideoCreateManual'
+import VideoCreate from './videos/components/VideoCreate/VideoCreate'
 import VideoEdit from './videos/components/VideoEdit/VideoEdit'
 
 import './App.scss'
@@ -197,7 +197,10 @@ class App extends Component {
               selectedVideo={this.state.selectedVideo} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
-            <VideoCreateManual alert={this.alert} user={user} />
+            <VideoCreate
+              alert={this.alert}
+              user={user}
+              selectedVideo={this.state.selectedVideo} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id/edit' render={({ match }) => (
             <VideoEdit alert={this.alert} user={user} match={match} />
