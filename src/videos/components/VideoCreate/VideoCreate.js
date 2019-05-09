@@ -31,7 +31,7 @@ class VideoCreate extends Component {
 
     const { artist, title, album, description, url } = this.state
 
-    const { alert } = this.props
+    const { alert, clearYoutubeResults } = this.props
 
     if ((artist.length === 0 &&
     title.length === 0 &&
@@ -43,6 +43,7 @@ class VideoCreate extends Component {
 
     createVideo(this.props.user, this.state)
       .then(response => this.setState({ createdVideoId: response.data.video._id }))
+      .then(clearYoutubeResults)
       .catch(console.error)
   }
 

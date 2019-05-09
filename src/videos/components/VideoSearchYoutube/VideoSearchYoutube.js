@@ -42,7 +42,7 @@ class VideoSearchYoutube extends Component {
 
   render () {
     const { youtubeSearchTerm } = this.state
-    const { youtubeSearchResults, setSelectedVideo } = this.props
+    const { youtubeSearchResults, setSelectedVideo, clearYoutubeResults } = this.props
 
     return (
       <Fragment>
@@ -63,8 +63,9 @@ class VideoSearchYoutube extends Component {
             <Link to='/video-add'>
               <Button
                 variant="primary-outline"
-                className="btn-mr">
-                Cancel
+                className="btn-mr"
+                onClick={clearYoutubeResults}>
+                {youtubeSearchResults ? 'Back' : 'Cancel'}
               </Button>
             </Link>
             <Button

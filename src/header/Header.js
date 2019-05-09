@@ -10,12 +10,12 @@ const tuberSmallLogo = require('./tuberSmallLogo.png')
 
 class Header extends Component {
   render () {
-    const { user, alert, settings, handleAutoplayChange, handleLoopChange } = this.props
+    const { user, alert, settings, handleAutoplayChange, handleLoopChange, clearYoutubeResults } = this.props
 
     const authenticatedOptions = (
       <Fragment>
         <Link to="/videos">
-          <Button variant="primary-outline">
+          <Button variant="primary-outline" onClick={clearYoutubeResults}>
             Your Tubes
           </Button>
         </Link>
@@ -37,8 +37,18 @@ class Header extends Component {
           Account
           </Dropdown.Toggle>
           <Dropdown.Menu className="my-dropdown-menu my-auth">
-            <Link className="auth-link" to="/change-password">Change Password</Link>
-            <Link className="auth-link" to="/sign-out">Sign Out</Link>
+            <Link
+              className="auth-link"
+              to="/change-password"
+              onClick={clearYoutubeResults}>
+              Change Password
+            </Link>
+            <Link
+              className="auth-link"
+              to="/sign-out"
+              onClick={clearYoutubeResults}>
+              Sign Out
+            </Link>
           </Dropdown.Menu>
         </Dropdown>
       </Fragment>
@@ -60,7 +70,11 @@ class Header extends Component {
       <header className="main-header">
         <div>
           <Link to="/">
-            <img className="header-logo" src={tuberSmallLogo} title="tuberSmallLogo" />
+            <img
+              className="header-logo"
+              src={tuberSmallLogo}
+              title="tuberSmallLogo"
+              onClick={clearYoutubeResults} />
           </Link>
         </div>
         <nav>

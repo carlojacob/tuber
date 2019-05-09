@@ -54,6 +54,11 @@ class App extends Component {
     }
   })
 
+  clearYoutubeResults = () => this.setState({
+    youtubeSearchResults: null,
+    selectedVideo: null
+  })
+
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type, fade: false }] })
     setTimeout(() => {
@@ -131,7 +136,8 @@ class App extends Component {
           alert={this.alert}
           settings={this.state.settings}
           handleAutoplayChange={this.handleAutoplayChange}
-          handleLoopChange={this.handleLoopChange} />
+          handleLoopChange={this.handleLoopChange}
+          clearYoutubeResults={this.clearYoutubeResults} />
         {alerts.map((alert, index) => (
           <Alert className={alert.fade ? 'fade-out' : ''}key={index} dismissible variant={alert.type}>
             <Alert.Heading>
@@ -186,7 +192,8 @@ class App extends Component {
               user={user}
               setYoutubeSearchResults={this.setYoutubeSearchResults}
               youtubeSearchResults={this.state.youtubeSearchResults}
-              setSelectedVideo={this.setSelectedVideo} />
+              setSelectedVideo={this.setSelectedVideo}
+              clearYoutubeResults={this.clearYoutubeResults} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-search-youtube/:id' render={({ match }) => (
             <Video
@@ -200,7 +207,8 @@ class App extends Component {
             <VideoCreate
               alert={this.alert}
               user={user}
-              selectedVideo={this.state.selectedVideo} />
+              selectedVideo={this.state.selectedVideo}
+              clearYoutubeResults={this.clearYoutubeResults} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id/edit' render={({ match }) => (
             <VideoEdit alert={this.alert} user={user} match={match} />
