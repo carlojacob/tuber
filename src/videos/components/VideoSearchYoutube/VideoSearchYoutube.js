@@ -34,6 +34,12 @@ class VideoSearchYoutube extends Component {
       })
   }
 
+  handlePressEnter = event => {
+    if (event.key === 'Enter') {
+      this.handleClick(event)
+    }
+  }
+
   render () {
     const { youtubeSearchTerm } = this.state
     const { youtubeSearchResults, setSelectedVideo } = this.props
@@ -50,6 +56,7 @@ class VideoSearchYoutube extends Component {
               value={youtubeSearchTerm}
               placeholder="Search"
               onChange={this.handleChange}
+              onKeyPress={this.handlePressEnter}
             />
           </Form.Group>
           <div>
