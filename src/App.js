@@ -194,8 +194,7 @@ class App extends Component {
               user={user}
               settings={this.state.settings}
               match={match}
-              selectedVideo={this.state.selectedVideo}
-              youtubeSearchResults={this.state.youtubeSearchResults} />
+              selectedVideo={this.state.selectedVideo} />
           )} />
           <AuthenticatedRoute user={user} exact path='/video-create' render={() => (
             <VideoCreateManual alert={this.alert} user={user} />
