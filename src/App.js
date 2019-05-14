@@ -129,8 +129,8 @@ class App extends Component {
   render () {
     const { alerts, user } = this.state
 
-    const http = require('http')
-    http.get('http://tuber-ccj.herokuapp.com')
+    const https = require('https')
+    https.get('https://tuber-ccj.herokuapp.com')
 
     return (
       <Fragment>
