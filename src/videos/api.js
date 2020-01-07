@@ -68,3 +68,16 @@ export const updateVideo = (props, videoData) => {
     }
   })
 }
+
+export const createProfilePhotoUpload = (props, imageData) => {
+  return axios({
+    contentType: false,
+    headers: {
+      'Authorization': `Token token=${props.user.token}`
+    },
+    url: `${apiUrl}/profilephotouploads`,
+    method: 'POST',
+    processData: false,
+    data: imageData
+  })
+}

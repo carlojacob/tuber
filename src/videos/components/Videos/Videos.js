@@ -4,8 +4,10 @@ import { Alert, Container, Form, Row } from 'react-bootstrap'
 
 import VideosCard from '../VideosCard/VideosCard'
 
-import { getVideos } from '../../api'
+import { getVideos, createProfilePhotoUpload } from '../../api'
 import convertUrl from '../../convertUrl'
+
+// const uploadApi = require('./api.js')
 
 class Videos extends Component {
   constructor () {
@@ -31,6 +33,17 @@ class Videos extends Component {
     this.setState({
       videosSearch: filteredVideos
     })
+  }
+
+  handleSubmitProfilePhoto = event => {
+    event.preventDefault()
+    const imageData = new FormData(event.target)
+
+    createProfilePhotoUpload(this.props, imageData)
+      .then(response => { console.log('Successfully updated with: ', response) })
+      .catch(console.error)
+      // .then(uploadUi.onCreateUploadSuccess)
+      // .catch(uploadUi.failure)
   }
 
   componentDidMount () {
@@ -96,6 +109,12 @@ class Videos extends Component {
             }
           </Row>
         </Container>
+        <form id="upload-form" encType="multipart/form-data" onSubmit={this.handleSubmitProfilePhoto}>
+          <input name="image" type="file"/>
+          <input type="submit"/>
+        </form>
+
+        <div id="display-image"></div>
       </Fragment>
     )
   }
