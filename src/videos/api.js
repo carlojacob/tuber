@@ -69,7 +69,7 @@ export const updateVideo = (props, videoData) => {
   })
 }
 
-export const createProfilePhotoUpload = (props, imageData) => {
+export const createProfilePhotoUpload = (props, profilePhoto) => {
   return axios({
     contentType: false,
     headers: {
@@ -78,6 +78,6 @@ export const createProfilePhotoUpload = (props, imageData) => {
     url: `${apiUrl}/profilephotouploads`,
     method: 'POST',
     processData: false,
-    data: imageData
+    data: profilePhoto
   })
 }
