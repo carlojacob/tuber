@@ -7,8 +7,6 @@ import VideosCard from '../VideosCard/VideosCard'
 import { getVideos, createProfilePhotoUpload } from '../../api'
 import convertUrl from '../../convertUrl'
 
-// const uploadApi = require('./api.js')
-
 class Videos extends Component {
   constructor () {
     super()
@@ -16,7 +14,8 @@ class Videos extends Component {
     this.state = {
       videos: null,
       videosSearch: null,
-      searchTerm: ''
+      searchTerm: '',
+      profilePhotoUrl: null
     }
   }
 
@@ -40,7 +39,9 @@ class Videos extends Component {
     const imageData = new FormData(event.target)
 
     createProfilePhotoUpload(this.props, imageData)
-      .then(response => { console.log('Successfully updated with: ', response) })
+      .then(apiResponse => {
+        this.setState({ profilePhotoUrl: apiResponse.data.profilephotoupload.url })
+      })
       .catch(console.error)
       // .then(uploadUi.onCreateUploadSuccess)
       // .catch(uploadUi.failure)
@@ -63,7 +64,7 @@ class Videos extends Component {
   }
 
   render () {
-    const { videos, searchTerm, videosSearch } = this.state
+    const { videos, searchTerm, videosSearch, profilePhotoUrl } = this.state
 
     if (videos === null) {
       return <p>Loading...</p>
@@ -114,7 +115,7 @@ class Videos extends Component {
           <input type="submit"/>
         </form>
 
-        <div id="display-image"></div>
+        <div><img src={profilePhotoUrl}/></div>
       </Fragment>
     )
   }
