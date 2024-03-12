@@ -1,2 +1,2 @@
 $card-width: 90%;
-$card-height: $card-width * (5 / 9);
+$card-height: $card-width * math.div(5, 9);
