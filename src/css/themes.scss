@@ -1,2 +1,4 @@
+@use "sass:math";
+
 $card-width: 90%;
 $card-height: $card-width * math.div(5, 9);
