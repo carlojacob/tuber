@@ -15,13 +15,13 @@ const VideoAdd = () => (
           Cancel
         </Button>
       </Link>
-      <Link to='/video-search-youtube'>
+      {/* <Link to='/video-search-youtube'>
         <Button
           variant="primary"
           className="btn-mb">
           Search YouTube
         </Button>
-      </Link>
+      </Link> */}
       <Link to='/video-create'>
         <Button
           variant="primary"
