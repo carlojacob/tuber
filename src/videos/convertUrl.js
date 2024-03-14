@@ -6,25 +6,23 @@ const checkUrl = (url) => {
   }
 }
 
+const getParsed = afterWatch => {
+  if (afterWatch[1].substring(0, 11).length === 11) {
+    return afterWatch[1].substring(0, 11)
+  } else {
+    return false
+  }
+}
+
 const parseUrl = url => {
-  let parsed
+  let afterWatch
   if (url.includes('youtube.com')) {
-    const afterWatch = url.split('watch?v=')
-    if (afterWatch[1].substring(0, 11).length === 11) {
-      parsed = afterWatch[1].substring(0, 11)
-    } else {
-      parsed = false
-    }
+    afterWatch = url.split('watch?v=')
   }
   if (url.includes('youtu.be')) {
-    const afterWatch = url.split('.be/')
-    if (afterWatch[1].substring(0, 11).length === 11) {
-      parsed = afterWatch[1].substring(0, 11)
-    } else {
-      parsed = false
-    }
+    afterWatch = url.split('.be/')
   }
-  return parsed
+  return getParsed(afterWatch)
 }
 
 export const createEmbedUrl = (videoId, settings) => {
