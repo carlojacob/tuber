@@ -42,10 +42,11 @@ export const createEmbedUrl = (videoId, settings) => {
     let playlistId
     if (loop === 1) {
       playlistId = videoId
+      return `https://www.youtube.com/embed/${videoId}?autoplay=${auto}&loop=${loop}&playlist=${playlistId}`
     } else {
       playlistId = ''
+      return `https://www.youtube.com/embed/${videoId}?autoplay=${auto}&loop=${loop}`
     }
-    return `https://www.youtube.com/embed/${videoId}?autoplay=${auto}&loop=${loop}&playlist=${playlistId}`
   } else {
     return `https://www.youtube.com/embed/${videoId}`
   }
