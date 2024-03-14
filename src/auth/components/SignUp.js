@@ -51,6 +51,15 @@ class SignUp extends Component {
         className="auth-form"
         onSubmit={this.onSignUp}>
         <h3 className="tuber-form-heading">Sign Up</h3>
+        <Form.Group>
+          <Form.Label className="tuber-form-label">NOTE:</Form.Label>
+          <Form.Text className="text-muted">
+            {'This is a passion project with limited resources and updates.'}
+          </Form.Text>
+          <Form.Text className="text-muted">
+            {'It is highly recommended that you do not reuse passwords from any other applications. You may also enter a short, memorable, false email address and password.'}
+          </Form.Text>
+        </Form.Group>
         <Form.Group controlId="email">
           <Form.Label className="tuber-form-label">Email address</Form.Label>
           <Form.Control
@@ -58,11 +67,11 @@ class SignUp extends Component {
             name="email"
             value={email}
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter email (must be of the form x@x)"
             onChange={this.handleChange}
           />
           <Form.Text className="text-muted">
-            {'We\'ll never share your email with anyone else.'}
+            {'We\'ll never share your email address with anyone else.'}
           </Form.Text>
         </Form.Group>
 
