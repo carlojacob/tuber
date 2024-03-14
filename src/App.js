@@ -69,10 +69,10 @@ class App extends Component {
           fade: true
         }))
       }))
-    }, 1000)
+    }, 3000)
     setTimeout(() => {
       this.setState(prevState => ({ alerts: prevState.alerts.slice(1) }))
-    }, 2000)
+    }, 4000)
   }
 
   // Function to create default user settings on sign up
@@ -130,7 +130,6 @@ class App extends Component {
     const { alerts, user } = this.state
 
     const https = require('https')
-    // https.get('https://tuber-ccj.herokuapp.com')
     https.get('https://tuber-api.onrender.com')
 
     return (
