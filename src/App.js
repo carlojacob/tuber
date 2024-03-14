@@ -69,10 +69,10 @@ class App extends Component {
           fade: true
         }))
       }))
-    }, 1000)
+    }, 3000)
     setTimeout(() => {
       this.setState(prevState => ({ alerts: prevState.alerts.slice(1) }))
-    }, 2000)
+    }, 4000)
   }
 
   // Function to create default user settings on sign up
