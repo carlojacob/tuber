@@ -1,28 +1,21 @@
-let videoId
-
 const checkUrl = (url) => {
-  if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
-    return false
-  }
+  if (!url.includes('youtube.com') && !url.includes('youtu.be')) return false
+  return true
 }
 
-const getParsed = afterWatch => {
-  if (afterWatch[1].substring(0, 11).length === 11) {
+const getParsedUrlID = afterWatch => {
+  if (afterWatch[1] && afterWatch[1].substring(0, 11).length === 11) {
     return afterWatch[1].substring(0, 11)
   } else {
     return false
   }
 }
 
-const parseUrl = url => {
+const parseUrlForID = url => {
   let afterWatch
-  if (url.includes('youtube.com')) {
-    afterWatch = url.split('watch?v=')
-  }
-  if (url.includes('youtu.be')) {
-    afterWatch = url.split('.be/')
-  }
-  return getParsed(afterWatch)
+  if (url.includes('youtube.com')) afterWatch = url.split('watch?v=')
+  if (url.includes('youtu.be')) afterWatch = url.split('.be/')
+  return getParsedUrlID(afterWatch)
 }
 
 export const createEmbedUrl = (videoId, settings) => {
@@ -51,25 +44,13 @@ export const createEmbedUrl = (videoId, settings) => {
 }
 
 const convertUrl = (url, settings) => {
-  if (checkUrl(url) === false) {
-    return false
-  }
-  if (url.includes('youtube.com')) {
-    if (parseUrl(url) === false) {
-      videoId = false
-    } else {
-      videoId = parseUrl(url)
-    }
-  } else if (url.includes('youtu.be')) {
-    if (parseUrl(url) === false) {
-      videoId = false
-    } else {
-      videoId = parseUrl(url)
-    }
-  }
-  if (videoId === false) {
-    return false
-  }
+  // Return false if URL does not include youtube.com or youtu.be
+  if (!checkUrl(url)) return false
+  // Parse URL for video ID. Function returns false if the url doesn't contain a valid ID
+  const videoId = parseUrlForID(url)
+  // Return false if video ID is invalid
+  if (!videoId) return false
+  // Return embedment URL if video ID is valid
   return createEmbedUrl(videoId, settings)
 }
 
