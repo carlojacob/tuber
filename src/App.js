@@ -130,7 +130,6 @@ class App extends Component {
     const { alerts, user } = this.state
 
     const https = require('https')
-    // https.get('https://tuber-ccj.herokuapp.com')
     https.get('https://tuber-api.onrender.com')
 
     return (
