@@ -130,7 +130,7 @@ class App extends Component {
     const { alerts, user } = this.state
 
     const https = require('https')
-    window.location.hostname === 'https://tuber-api.onrender.com' && https.get('https://tuber-api.onrender.com')
+    window.location.hostname === 'www.carlojacob.com' && https.get('https://tuber-api.onrender.com')
 
     return (
       <Fragment>
