@@ -99,8 +99,7 @@ class Video extends Component {
             <div className="centered-video">
               <iframe
                 className="full-video-dims"
-                src={url || 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
-                }
+                src={url || 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'}
                 allow="autoplay">
               </iframe>
             </div>
